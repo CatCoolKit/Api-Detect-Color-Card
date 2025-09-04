@@ -172,26 +172,32 @@ curl -X POST "http://127.0.0.1:8000/docs" \
 
 ```json
 {
-  "success": true,
-  "program": [
+  "detections": [
     {
-      "type": "start",
-      "position": 1
+      "class_name": "start"
     },
     {
-      "type": "repeat_start",
-      "number": 3,
-      "position": 2,
-      "children": [
+      "class_name": "repeat_start",
+      "value": 5,
+      "actions": [
         {
-          "type": "move_forward",
-          "position": 3
+          "class_name": "move_forward",
+          "value": 8
         }
       ]
     },
     {
-      "type": "repeat_end",
-      "position": 4
+      "class_name": "collect",
+      "value": 2
+    },
+    {
+      "class_name": "turn_left"
+    },
+    {
+      "class_name": "turn_right"
+    },
+    {
+      "class_name": "turn_back"
     }
   ]
 }
