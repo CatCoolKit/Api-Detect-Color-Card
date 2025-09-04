@@ -92,6 +92,11 @@ Api-Detect-Color-Card/
 ├── 📋 requirements.txt      # Dependencies
 ├── 📖 README.md            # Tài liệu dự án
 ├── 🔍 yolo_detect.py       # Script detection
+├── 📁 images/              # Thư mục ảnh mẫu
+│   ├── 🎯 sample_cards.jpg # Ảnh mẫu các thẻ lệnh
+│   ├── 🔄 example_1.jpg    # Ví dụ 1: Thẻ đơn giản
+│   ├── 🔄 example_2.jpg    # Ví dụ 2: Thẻ có vòng lặp
+│   └── 🔄 example_3.jpg    # Ví dụ 3: Thẻ phức tạp
 └── 📁 train/               # Thư mục training
     ├── 📊 results.csv      # Kết quả training
     ├── 📈 *.png           # Biểu đồ metrics
@@ -100,20 +105,65 @@ Api-Detect-Color-Card/
         └── last.pt
 ```
 
+## 🖼️ Ảnh mẫu
+
+### Các loại thẻ được hỗ trợ
+
+Dự án hỗ trợ nhận dạng **17 loại thẻ** lập trình trực quan sau:
+
+#### Bảng tổng quan
+
+| Loại thẻ            | Mô tả                    | Ví dụ          |
+| ------------------- | ------------------------ | -------------- |
+| 🚀 **start**        | Thẻ bắt đầu chương trình | `start`        |
+| 🔢 **number 1-9**   | Thẻ số (1, 2, 3, ..., 9) | `number 3`     |
+| 🔄 **repeat_start** | Bắt đầu vòng lặp         | `repeat_start` |
+| 🔚 **repeat_end**   | Kết thúc vòng lặp        | `repeat_end`   |
+| ⬆️ **move_forward** | Di chuyển tiến           | `move_forward` |
+| ⬅️ **turn_left**    | Rẽ trái                  | `turn_left`    |
+| ➡️ **turn_right**   | Rẽ phải                  | `turn_right`   |
+| 🔄 **turn_back**    | Quay lại                 | `turn_back`    |
+| 📦 **collect**      | Thu thập                 | `collect`      |
+
+#### Danh sách đầy đủ các thẻ
+
+<details>
+<summary>📋 Xem danh sách đầy đủ 17 loại thẻ</summary>
+
+| STT | Tên thẻ        | Mô tả                    | Loại     |
+| --- | -------------- | ------------------------ | -------- |
+| 1   | `start`        | Thẻ bắt đầu chương trình | Control  |
+| 2   | `collect`      | Thu thập vật phẩm        | Action   |
+| 3   | `move_forward` | Di chuyển tiến           | Movement |
+| 4   | `number 1`     | Thẻ số 1                 | Number   |
+| 5   | `number 2`     | Thẻ số 2                 | Number   |
+| 6   | `number 3`     | Thẻ số 3                 | Number   |
+| 7   | `number 4`     | Thẻ số 4                 | Number   |
+| 8   | `number 5`     | Thẻ số 5                 | Number   |
+| 9   | `number 6`     | Thẻ số 6                 | Number   |
+| 10  | `number 7`     | Thẻ số 7                 | Number   |
+| 11  | `number 8`     | Thẻ số 8                 | Number   |
+| 12  | `number 9`     | Thẻ số 9                 | Number   |
+| 13  | `repeat_end`   | Kết thúc vòng lặp        | Control  |
+| 14  | `repeat_start` | Bắt đầu vòng lặp         | Control  |
+| 15  | `turn_back`    | Quay lại                 | Movement |
+| 16  | `turn_left`    | Rẽ trái                  | Movement |
+| 17  | `turn_right`   | Rẽ phải                  | Movement |
+
+</details>
+
 ## 🔗 API Endpoints
 
-| Method | Endpoint  | Mô tả                     |
-| ------ | --------- | ------------------------- |
-| `POST` | `/detect` | Nhận dạng thẻ từ hình ảnh |
-| `GET`  | `/health` | Kiểm tra trạng thái API   |
-| `GET`  | `/docs`   | Tài liệu API (Swagger UI) |
+| Method | Endpoint | Mô tả                     |
+| ------ | -------- | ------------------------- |
+| `GET`  | `/docs`  | Tài liệu API (Swagger UI) |
 
 ## 📝 Ví dụ sử dụng
 
 ### Gửi request nhận dạng
 
 ```bash
-curl -X POST "http://127.0.0.1:8000/detect" \
+curl -X POST "http://127.0.0.1:8000/docs" \
      -H "Content-Type: multipart/form-data" \
      -F "file=@your_image.jpg"
 ```
