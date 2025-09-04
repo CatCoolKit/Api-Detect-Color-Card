@@ -73,6 +73,41 @@ Server sẽ chạy tại địa chỉ: **http://127.0.0.1:8000**
 
 Mở trình duyệt và truy cập [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) để xem giao diện Swagger UI và thử nghiệm API.
 
+### 🎥 Chạy với Camera (Computer Vision)
+
+Để sử dụng với camera thực tế, bạn có thể chạy script `yolo_detect.py`:
+
+#### 1. Di chuyển vào thư mục dự án
+
+```bash
+cd Api-Detect-Color-Card
+```
+
+#### 2. Chạy script với camera
+
+```bash
+python yolo_detect.py --model my_model.pt --source usb0 --resolution 1280x720
+```
+
+#### Tham số:
+
+- `--model`: Đường dẫn đến file model (mặc định: `my_model.pt`)
+- `--source`: Nguồn camera (`usb0`, `0`, `1`, `2`, ...)
+- `--resolution`: Độ phân giải camera (mặc định: `1280x720`)
+
+#### Ví dụ khác:
+
+```bash
+# Sử dụng camera mặc định
+python yolo_detect.py --model my_model.pt --source 0
+
+# Sử dụng camera với độ phân giải khác
+python yolo_detect.py --model my_model.pt --source usb0 --resolution 1920x1080
+
+# Sử dụng video file
+python yolo_detect.py --model my_model.pt --source video.mp4
+```
+
 ## 🛠️ Công nghệ sử dụng
 
 | Công nghệ   | Mục đích            | Phiên bản   |
